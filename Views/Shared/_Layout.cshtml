@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - YZU Bird</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/project.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("topCSS", required: false)
+    <link rel="stylesheet" href="~/css/home.css" />
+
+    <style>
+       
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f8faf9; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, "Microsoft JhengHei", sans-serif;
+        }
+
+        main {
+            flex: 1; 
+        }
+
+      
+        .custom-navbar {
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            padding: 12px 0;
+            border-bottom: none;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: #4a7c59 !important;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+       
+        .navbar-logo {
+            height: 100px; 
+            width: auto;
+            margin-right: 2px; 
+            object-fit: contain;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: #555 !important;
+            transition: all 0.3s ease;
+            margin: 0 4px;
+            padding: 8px 16px !important;
+            border-radius: 8px;
+        }
+
+            .nav-link:hover {
+                color: #4a7c59 !important;
+                background-color: #f4f9f5; 
+            }
+
+        
+        .user-chip {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+            margin-top: 4px;
+            height: fit-content;
+        }
+
+        
+        .logout-btn {
+            color: #d9534f !important;
+            font-weight: bold;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            padding: 6px 20px !important;
+            transition: all 0.3s ease;
+        }
+
+            .logout-btn:hover {
+                background-color: #ffebee;
+                border-color: #ffcdd2;
+                color: #c9302c !important;
+            }
+
+      
+        .custom-footer {
+            background-color: #ffffff;
+            border-top: 1px solid #f0f0f0 !important;
+            padding: 20px 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+            .custom-footer a {
+                color: #4a7c59;
+                text-decoration: none;
+            }
+
+                .custom-footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-navbar mb-4">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo1.png" alt="YZU Logo" class="navbar-logo" />
+                    元智ㄉ鳥鳥
+                </a>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">
+                                首頁
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Birds" asp-action="Index">
+                                鳥類圖鑑
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Birds" asp-action="BirdChart">
+                                鳥類統計
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-center">
+                        @if (Context.Session.GetString("User") != null)
+                        {
+                            <li class="nav-item">
+                                <div class="user-chip">
+                                    歡迎, @Context.Session.GetString("User")
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link logout-btn" asp-controller="Login" asp-action="Logout">
+                                    登出
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="custom-footer text-center">
+        <div class="container">
+            &copy; 2026 - 元智鳥鳥圖鑑 (YZU Bird) - <a asp-area="" asp-controller="Home" asp-action="Privacy">隱私權政策</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

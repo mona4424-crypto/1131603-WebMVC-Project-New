@@ -1,0 +1,156 @@
+﻿@{
+    ViewData["Title"] = "元智鳥鳥圖鑑";
+}
+
+<style>
+    .hero-section {
+        position: relative;
+        height: 70vh;
+        min-height: 550px;
+        background: linear-gradient(rgba(34, 60, 45, 0.6), rgba(34, 60, 45, 0.8)), url('/images/heron.jpg') center 15% / cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        margin-bottom: 4rem;
+        border-radius: 0 0 40px 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .hero-title {
+        font-weight: 900;
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+        margin-bottom: 1.2rem;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        max-width: 650px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.8;
+        color: #e8f5e9;
+    }
+
+    .btn-hero {
+        background-color: #f39c12;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 12px 40px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+    }
+
+        .btn-hero:hover {
+            background-color: #d68910;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+        }
+
+    .stats-box {
+        background: #fff;
+        padding: 2.5rem 1rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        border-bottom: 5px solid #4a7c59;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+
+        .stats-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .stats-box h2 {
+            color: #4a7c59;
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-box p {
+            margin: 0;
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+    .feature-box {
+        padding: 2.5rem 1.5rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+        .feature-box:hover {
+            background-color: #f4f9f5;
+        }
+
+    .feature-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-box:hover .feature-icon {
+        transform: scale(1.15);
+    }
+
+    .feature-box h3 {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .feature-box p {
+        color: #6c757d;
+        line-height: 1.7;
+    }
+</style>
+
+<div class="hero-section">
+    <div class="container hero-overlay">
+        <h1 class="hero-title">元智ㄉ鳥鳥</h1>
+        <p class="hero-subtitle">
+            黑冠麻鷺，一種有很多別名的鳥鳥。<br />
+            又名凱文、地瓜、大笨鳥，台語又稱其為「山暗光」。<br />
+            喔對，牠會吃蛇或者麻雀之類的
+        </p>
+        <a asp-controller="Birds" asp-action="Index" class="btn btn-hero">
+            看鳥鳥
+        </a>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+            <div class="stats-box">
+                <h2>@ViewBag.TotalBirds</h2>
+                <p>已收錄鳥種</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="stats-box">
+                <h2>@ViewBag.ResidentBirds</h2>
+                <p>校園留鳥</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="stats-box">
+                <h2>@ViewBag.WaterBirds</h2>
+                <p>水域鳥種</p>
+            </div>
+        </div>
+    </div>
+</div>

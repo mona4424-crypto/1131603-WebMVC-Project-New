@@ -1,0 +1,89 @@
+﻿@model IEnumerable<project.Models.Bird>
+
+@{
+    ViewData["Title"] = "鳥類圖鑑";
+}
+
+<div class="d-flex justify-content-between align-items-end mb-4 mt-2">
+    <div>
+        <h2 class="fw-bold text-success mb-1">鳥鳥ㄉ圖鑑</h2>
+        <p class="text-muted mb-0">探索並管理校園裡的羽毛朋友們</p>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-4 bg-white rounded-4 p-3">
+    <form asp-action="Index" method="get" class="row g-3 align-items-center">
+
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-text bg-light border-end-0 text-muted">🔍</span>
+                <input type="text"
+                       name="searchString"
+                       class="form-control border-start-0 bg-light"
+                       placeholder="請輸入鳥名..."
+                       value="@Context.Request.Query["searchString"]" />
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <select name="category" class="form-select bg-light">
+                <option value="">全部種類</option>
+                <option value="留鳥" selected="@(Context.Request.Query["category"] == "留鳥")">留鳥</option>
+                <option value="水鳥" selected="@(Context.Request.Query["category"] == "水鳥")">水鳥</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100 fw-bold rounded-3">
+                搜尋
+            </button>
+        </div>
+
+        <div class="col-md-3 text-md-end">
+            <a asp-action="Create" class="btn btn-outline-success fw-bold rounded-3 w-100">
+                 新增鳥類
+            </a>
+        </div>
+
+    </form>
+</div>
+
+<div class="row g-4">
+    @if (!Model.Any())
+    {
+        <div class="col-12 text-center py-5 text-muted">
+            <h4>查無符合條件的鳥類資料 </h4>
+        </div>
+    }
+    else
+    {
+        @foreach (var bird in Model)
+        {
+            <partial name="_BirdCardPartial" model="bird" />
+        }
+    }
+</div>
+
+@if (ViewBag.TotalPages > 1)
+{
+    <nav class="mt-5 mb-4">
+        <ul class="pagination custom-pagination justify-content-center">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link shadow-sm"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-searchString="@Context.Request.Query["searchString"]"
+                       asp-route-category="@Context.Request.Query["category"]">
+                        @i
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+@section topCSS {
+    <link href="~/css/birdcard.css" rel="stylesheet" />
+}

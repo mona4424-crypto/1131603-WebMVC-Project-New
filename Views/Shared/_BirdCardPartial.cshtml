@@ -1,0 +1,37 @@
+﻿@model project.Models.Bird
+
+<div class="col-md-6 col-lg-3 mb-4">
+    <div class="tcg-card">
+        <div class="tcg-type-badge">
+            @Model.Category
+        </div>
+
+        <div class="tcg-image-frame">
+            <img src="@Model.ImagePath" alt="@Model.BirdName" />
+        </div>
+
+        <div class="tcg-title-header">
+            <h4 class="fw-bold mb-0">@Model.BirdName</h4>
+            <small class="text-muted fst-italic fw-bold">@Model.EnglishName</small>
+        </div>
+
+        <div class="tcg-stats-box mb-3">
+            <div class="mb-2">
+                <span class="badge bg-secondary mb-1">出沒地點</span><br />
+                <i class="fw-semibold">@Model.FoundLocation</i>
+            </div>
+            <div>
+                <span class="badge bg-secondary mb-1">介紹</span><br />
+                <span class="text-muted">
+                    @(Model.Description != null && Model.Description.Length > 30 ? Model.Description.Substring(0, 30) + "..." : Model.Description)
+                </span>
+            </div>
+        </div>
+
+        <div class="tcg-actions d-flex justify-content-between gap-1 mt-auto">
+            <a asp-action="Details" asp-route-id="@Model.BirdID" class="btn btn-primary btn-sm flex-fill">詳細</a>
+            <a asp-action="Edit" asp-route-id="@Model.BirdID" class="btn btn-warning btn-sm flex-fill text-dark">編輯</a>
+            <a asp-action="Delete" asp-route-id="@Model.BirdID" class="btn btn-danger btn-sm flex-fill">刪除</a>
+        </div>
+    </div>
+</div>

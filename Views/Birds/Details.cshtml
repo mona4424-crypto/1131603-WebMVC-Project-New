@@ -1,0 +1,44 @@
+﻿@model project.Models.Bird
+
+@{
+    ViewData["Title"] = "鳥類詳細資料";
+}
+
+@section topCSS {
+    <link href="~/css/birdcard.css" rel="stylesheet" />
+}
+
+<div class="container mt-4 d-flex justify-content-center">
+    <div class="tcg-card" style="max-width: 600px; border-width: 12px; width: 100%;">
+
+        <div class="tcg-type-badge" style="width: 80px; height: 80px; font-size: 1.4rem; top: -25px; right: -25px;">
+            @Model.Category
+        </div>
+
+        <div class="tcg-image-frame">
+            <img src="@Model.ImagePath" alt="@Model.BirdName" style="height: 400px;" />
+        </div>
+
+        <div class="tcg-title-header mb-4">
+            <h2 class="fw-bold mb-1">@Model.BirdName</h2>
+            <h5 class="text-muted fst-italic fw-bold">@Model.EnglishName</h5>
+        </div>
+
+        <div class="tcg-stats-box mb-4 p-4" style="font-size: 1.1rem;">
+            <p>
+                <strong>📍 出沒地點：</strong> <br />
+                @Model.FoundLocation
+            </p>
+            <hr />
+            <p>
+                <strong>📖 詳細介紹：</strong> <br />
+                @Model.Description
+            </p>
+        </div>
+
+        <div class="tcg-actions d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.BirdID" class="btn btn-warning flex-fill fs-5 text-dark">編輯這張卡牌</a>
+            <a asp-action="Index" class="btn btn-secondary flex-fill fs-5">收回牌組 (返回)</a>
+        </div>
+    </div>
+</div>

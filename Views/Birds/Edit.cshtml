@@ -1,0 +1,135 @@
+﻿@model project.Models.Bird
+
+@{
+    ViewData["Title"] = "編輯鳥鳥資料";
+}
+
+<div class="container">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-warning">
+
+            <h2>編輯鳥類資料</h2>
+
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Edit">
+
+                <input type="hidden" asp-for="BirdID" />
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <img src="@Model.ImagePath"
+                             class="img-fluid rounded shadow"
+                             alt="@Model.BirdName" />
+
+                    </div>
+
+                    <div class="col-md-8">
+
+                        <div class="mb-3">
+
+                            <label asp-for="BirdName"
+                                   class="form-label">
+                                鳥名
+                            </label>
+
+                            <input asp-for="BirdName"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label asp-for="EnglishName"
+                                   class="form-label">
+                                英文名稱
+                            </label>
+
+                            <input asp-for="EnglishName"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label asp-for="Category"
+                                   class="form-label">
+                                種類
+                            </label>
+
+                            <input asp-for="Category"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label asp-for="FoundLocation"
+                                   class="form-label">
+                                出沒地點
+                            </label>
+
+                            <input asp-for="FoundLocation"
+                                   class="form-control" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="mb-3">
+
+                    <label asp-for="Description"
+                           class="form-label">
+                        鳥類介紹
+                    </label>
+
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="5">
+                    </textarea>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="ImagePath"
+                           class="form-label">
+                        圖片路徑
+                    </label>
+
+                    <input asp-for="ImagePath"
+                           class="form-control" />
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-warning">
+
+                    儲存修改
+
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    返回圖鑑
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

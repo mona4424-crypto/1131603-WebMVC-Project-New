@@ -1,0 +1,45 @@
+﻿@using System.Text.Json
+
+@{
+    ViewData["Title"] = "鳥類統計圖";
+
+    var labels =
+        JsonSerializer.Serialize(ViewBag.Labels);
+
+    var counts =
+        JsonSerializer.Serialize(ViewBag.Counts);
+}
+
+<h2>鳥類種類統計</h2>
+
+<canvas id="birdChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    var ctx =
+        document.getElementById('birdChart');
+
+    new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: @Html.Raw(labels),
+
+            datasets: [{
+
+                label: '鳥類數量',
+
+                data: @Html.Raw(counts),
+
+                borderWidth: 1
+
+            }]
+        }
+
+    });
+
+</script>

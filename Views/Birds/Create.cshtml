@@ -1,0 +1,80 @@
+﻿@model project.Models.Bird
+
+@{
+    ViewData["Title"] = "新增鳥ㄋㄧㄠ";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-success text-white py-3">
+            <h4 class="mb-0 fw-bold">新增鳥ㄋㄧㄠ資料</h4>
+        </div>
+
+        <div class="card-body p-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="BirdName" class="form-label fw-semibold">鳥名</label>
+                            <input asp-for="BirdName" class="form-control" placeholder="請輸入鳥類名稱" />
+                            <span asp-validation-for="BirdName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EnglishName" class="form-label fw-semibold">英文名稱</label>
+                            <input asp-for="EnglishName" class="form-control" placeholder="請輸入英文名稱" />
+                            <span asp-validation-for="EnglishName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Category" class="form-label fw-semibold">種類</label>
+                            <select asp-for="Category" class="form-select">
+                                <option value="">請選擇...</option>
+                                <option value="留鳥">留鳥</option>
+                                <option value="水鳥">水鳥</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="FoundLocation" class="form-label fw-semibold">出沒地點</label>
+                            <input asp-for="FoundLocation" class="form-control" placeholder="例如：七館、操場之類的" />
+                            <span asp-validation-for="FoundLocation" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ImagePath" class="form-label fw-semibold">圖片路徑</label>
+                            <input asp-for="ImagePath" class="form-control" placeholder="/images/bird.jpg" />
+                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4 mt-2">
+                    <label asp-for="Description" class="form-label fw-semibold">鳥類介紹</label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="請輸入鳥類的特徵與習性描述..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success px-4">
+                        新增鳥ㄋㄧㄠ
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                        返回圖鑑
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
